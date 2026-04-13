@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk npm:*)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl:*)",
+      "Bash(node -e \"process.stdin.on\\('data',d=>{const j=JSON.parse\\(d\\);console.log\\('nome stored as:',j.nome\\)}\\)\")",
+      "Bash(node -c server.js)",
+      "Bash(node -e ':*)",
+      "Bash(node server.js)"
+    ]
+  }
+}
