@@ -1,0 +1,8 @@
+node_modules/
+database/
+public/uploads/
+.env
+*.log
+.claude/
+.agents/
+skills-lock.json
