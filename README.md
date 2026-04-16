@@ -1,63 +1,67 @@
-# iLnet — Controle de Frota
+# iLnet - Controle de Frota
 
-Sistema completo de gestão de frota para a empresa iLnet.
+Sistema web de controle de frota para a iLnet, com foco em operação diária, abastecimentos, checklists, transferências, manutenções e alertas.
 
-## Funcionalidades
+## Destaques
 
-### 🔐 Autenticação
-- Login/senha com sessões seguras (24h)
-- Perfis: Administrador e Operador
-- Gestão de usuários (admin)
-- Alteração de senha
+- Dashboard com KPIs, gráficos e atalhos operacionais.
+- Cadastro de veículos, motoristas e usuários.
+- Abastecimentos com fotos, consumo calculado e exportação CSV.
+- Checklists de saída e retorno com observações e fotos por item.
+- Transferências com controle de saída, retorno e quilometragem.
+- Manutenções com fotos, custos e alertas por data ou km.
+- Alertas de manutenção e CNH com painel no topo e envio por e-mail.
+- Interface responsiva em uma SPA única (`public/index.html`).
 
-### 🚗 Gestão de Frota
-- Cadastro de veículos (placa, marca, modelo, ano, combustível)
-- Abastecimentos com fotos de comprovante
-- Controle de hodômetro e consumo automático
-- Checklist de inspeção (saída/retorno)
-- Transferências de veículos
-- Manutenções preventivas/corretivas com fotos
+## Stack
 
-### 👤 Motoristas
-- Cadastro com CNH e validade
-- Alertas de CNH vencendo
+- Backend: Node.js + Express + SQLite via `sql.js`
+- Frontend: HTML + CSS + JavaScript inline + Chart.js
+- Auth: PBKDF2 + tokens de sessão
+- Uploads: `multer`
+- Segurança: `helmet`, validação de senha, limpeza de sessão e rate limiting no login
 
-### 🔔 Alertas Inteligentes
-- Previsão de manutenção por data
-- Previsão de manutenção por km
-- Alerta de CNH vencendo
-- Notificações na tela (sininho)
-- Envio por e-mail (SMTP configurável)
-- Prioridades: crítica, alta, média
+## Estrutura
 
-### 📊 Dashboard & Relatórios
-- KPIs em tempo real
-- Gráficos de gastos, consumo, preço
-- Relatórios filtráveis por veículo e período
-- Galeria de fotos
-- Exportar CSV / Backup JSON
+```text
+ilnet-fuel/
+|- server.js
+|- package.json
+|- public/
+|  |- index.html
+|  |- logo.png
+|  `- uploads/
+|- database/
+|  `- fueltrack.db
+|- CLAUDE.md
+`- README.md
+```
 
-### 📱 Responsivo
-- Interface adaptável para celular e desktop
-
-## Instalação
+## Como rodar
 
 ```bash
 npm install
 npm start
 ```
 
-Acesse: http://localhost:3000
+Acesse [http://localhost:3000](http://localhost:3000).
 
-**Login padrão:** admin / admin123
+## Login inicial
 
-## Stack
-- Backend: Node.js + Express + SQLite (sql.js)
-- Frontend: HTML/CSS/JS + Chart.js
-- Autenticação: PBKDF2 + tokens de sessão
+- Usuario: `admin`
+- Senha: gerada automaticamente no primeiro start
+- A senha temporária aparece no console do servidor
 
-## E-mail (opcional)
-```bash
-npm install nodemailer
-```
-Configure SMTP em Configurações > E-mail.
+## Configurações úteis
+
+- Alertas por antecedência em dias
+- Alertas por km para carro
+- Alertas por km para moto
+- SMTP para envio de alertas por e-mail
+
+## Observações
+
+- O banco SQLite é salvo em `database/fueltrack.db`.
+- Fotos ficam em `public/uploads/`.
+- Veículos, motoristas e usuários usam desativação lógica.
+- Abastecimentos, checklists, transferências e manutenções usam exclusão física.

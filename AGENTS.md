@@ -1,4 +1,4 @@
-# CLAUDE.md — iLnet Controle de Frota
+# AGENTS.md — iLnet Controle de Frota
 
 ## Projeto
 Sistema completo de controle de frota para a empresa **iLnet** (telecom). Cores predominantes: azul. Responsivo (mobile-first).
@@ -7,39 +7,37 @@ Sistema completo de controle de frota para a empresa **iLnet** (telecom). Cores 
 - **Backend:** Node.js + Express + SQLite (sql.js) — arquivo único `server.js`
 - **Frontend:** Single-page HTML (`public/index.html`) com CSS inline + JS inline + Chart.js
 - **Autenticação:** PBKDF2 + tokens de sessão (24h), middleware `authMiddleware` em todas as rotas API
-- **Segurança:** `helmet`, rate limiting no login, validação de senha e restrições de upload
 - **Logo:** `public/logo.png`
 
 ## Estrutura
-``` 
+```
 ilnet-fuel/
-├── server.js              # Backend completo (~140 linhas compactadas)
-├── package.json           # express, sql.js, multer, cors, morgan, helmet, express-rate-limit, nodemailer
+├── server.js              # Backend completo (~300 linhas compactadas)
+├── package.json           # express, sql.js, multer, cors, morgan
 ├── public/
-│   ├── index.html         # Frontend SPA (~1350 linhas)
+│   ├── index.html         # Frontend SPA (~1300 linhas)
 │   ├── logo.png           # Logo iLnet
 │   └── uploads/           # Fotos de abastecimentos e manutenções
 ├── database/
 │   └── fueltrack.db       # SQLite (criado automaticamente)
-└── CLAUDE.md
+└── AGENTS.md
 ```
 
 ## Banco de Dados (SQLite via sql.js)
 Tabelas:
-- `usuarios` — id, nome, email, login, senha_hash, senha_salt, perfil (admin/operador), ativo, criado_em
-- `sessoes` — token, usuario_id, criado_em, expira_em
-- `veiculos` — id, placa (UNIQUE), nome, marca, modelo, ano, cor, combustivel, tanque, km_ini, tipo, ativo, criado_em
-- `abastecimentos` — id, veiculo_id, data, combustivel, posto, litros, preco, total, hodometro, km_rodados, consumo, cheio, nota, obs, criado_em
-- `fotos` — id, abastecimento_id, filename, criado_em
-- `checklists` — id, veiculo_id, data, tipo (saida/retorno), motorista, km, destino, obs, criado_em
+- `usuarios` — id, nome, email, login, senha_hash, senha_salt, perfil (admin/operador), ativo
+- `sessoes` — token, usuario_id, expira_em
+- `veiculos` — id, placa (UNIQUE), nome, marca, modelo, ano, cor, combustivel, tanque, km_ini, ativo
+- `abastecimentos` — id, veiculo_id, data, combustivel, posto, litros, preco, total, hodometro, km_rodados, consumo, cheio, nota, obs
+- `fotos` — id, abastecimento_id, filename
+- `checklists` — id, veiculo_id, data, tipo (saida/retorno), motorista, km, destino, obs
 - `checklist_itens` — id, checklist_id, item, ok, obs
-- `checklist_item_fotos` — id, checklist_item_id, filename, criado_em
-- `transferencias` — id, veiculo_id, data_saida, data_retorno, motorista_saida, motorista_retorno, km_saida, km_retorno, destino, obs, status (aberto/concluido), criado_em
-- `manutencoes` — id, veiculo_id, data, tipo (preventiva/corretiva/revisao), descricao, oficina, valor, km_atual, proxima_km, proxima_data, status, obs, criado_em
-- `manutencao_fotos` — id, manutencao_id, filename, criado_em
-- `motoristas` — id, nome, cnh, cnh_validade, telefone, email, ativo, criado_em
-- `alertas` — id, veiculo_id, tipo (manutencao_data/manutencao_km/cnh), titulo, mensagem, prioridade (critica/alta/media), lido, resolvido, referencia_id, criado_em
-- `config` — chave/valor (`empresa`, `responsavel`, `alerta_dias_antecedencia`, `alerta_km_antecedencia`, `alerta_km_antecedencia_moto`, `smtp_host`, `smtp_port`, `smtp_user`, `smtp_pass`, `alerta_email`)
+- `transferencias` — id, veiculo_id, data_saida, data_retorno, motorista_saida/retorno, km_saida/retorno, destino, status (aberto/concluido)
+- `manutencoes` — id, veiculo_id, data, tipo (preventiva/corretiva/revisao), descricao, oficina, valor, km_atual, proxima_km, proxima_data, status, obs
+- `manutencao_fotos` — id, manutencao_id, filename
+- `motoristas` — id, nome, cnh, cnh_validade, telefone, email, ativo
+- `alertas` — id, veiculo_id, tipo (manutencao_data/manutencao_km/cnh), titulo, mensagem, prioridade (critica/alta/media), lido, resolvido, referencia_id
+- `config` — chave/valor (empresa, responsavel, alerta_dias_antecedencia, alerta_km_antecedencia, smtp_host/port/user/pass, alerta_email)
 
 ## API Endpoints
 
@@ -55,15 +53,12 @@ Tabelas:
 - `POST /api/fotos/:abastecimento_id` — upload multipart
 - `DELETE /api/fotos/:filename`
 - CRUD `/api/checklists`
-- `POST /api/checklist-itens/:item_id/fotos` — upload multipart por item do checklist
-- `DELETE /api/checklist-item-fotos/:filename`
 - CRUD `/api/transferencias`
 - CRUD `/api/manutencoes` + `/api/manutencoes/:id/fotos`
-- `DELETE /api/manutencao-fotos/:filename`
 - CRUD `/api/motoristas`
 - CRUD `/api/alertas` + `GET /api/alertas/count` + `PUT /api/alertas/:id/lido` + `PUT /api/alertas/ler-todos` + `PUT /api/alertas/:id/resolver`
 - `POST /api/alertas/verificar` — gera alertas baseado em proxima_data, proxima_km e cnh_validade
-- `POST /api/alertas/enviar-email` — envia alertas pendentes por SMTP (`nodemailer` já está nas dependências)
+- `POST /api/alertas/enviar-email` — envia alertas pendentes por SMTP (requer nodemailer)
 - `GET /api/stats` — dashboard KPIs e dados de gráficos
 - `GET/POST /api/config`
 - `GET /api/export/csv`
@@ -82,13 +77,12 @@ Tabelas:
 - Admin-only items via CSS: `body.is-admin .nav-item.admin-only{display:flex}`
 - Charts: Chart.js (bar, doughnut, line)
 - Fotos: upload via FormData + drag & drop
-- Upload de fotos em checklists e manutenções
 - Alertas: polling a cada 60s via setInterval
 
-## Login inicial
+## Login padrão
 - **Usuário:** admin
-- **Senha:** gerada aleatoriamente no primeiro start
-- A senha temporária é exibida no console e deve ser trocada no primeiro login
+- **Senha:** admin123
+- Criado automaticamente no primeiro start se não existir admin
 
 ## Para rodar
 ```bash
@@ -104,11 +98,9 @@ npm install nodemailer
 ```
 
 ## Convenções de código
-- IDs gerados com `crypto.randomUUID()`
+- IDs gerados com `uid()` = Date.now().toString(36) + random
 - Senhas: PBKDF2 com salt aleatório de 16 bytes
 - Soft delete em veículos, motoristas e usuários (ativo=0)
 - Hard delete em abastecimentos, checklists, transferências, manutenções
 - Fotos salvas em public/uploads/ com nome timestamp-random.ext
 - DB salvo em disco a cada write (saveDb())
-- Uploads aceitam apenas imagens e possuem limite de 10 MB por arquivo
-- Login possui rate limiting por IP e sessões expiradas são limpas automaticamente

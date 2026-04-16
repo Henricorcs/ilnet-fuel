@@ -1,0 +1,10 @@
+node_modules/
+database/*.db
+database/*.db-shm
+database/*.db-wal
+database/*.db-bak
+database/*.bak
+public/uploads/
+.claude/settings.local.json
+*.log
+.env
