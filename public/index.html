@@ -37,7 +37,7 @@ body::after{width:440px;height:440px;right:-110px;top:90px;background:radial-gra
 /* SIDEBAR */
 .sidebar{width:248px;min-height:100vh;background:linear-gradient(180deg,rgba(7,26,43,.97) 0%,rgba(4,16,28,.97) 100%);border-right:1px solid var(--border-soft);backdrop-filter:blur(18px);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .3s;overflow-y:auto;box-shadow:var(--shadow-md)}
 .sidebar-logo{padding:22px 20px 17px;border-bottom:1px solid var(--border-soft);display:flex;align-items:center;gap:13px;flex-shrink:0}
-.logo-img-wrap{width:48px;height:48px;background:linear-gradient(135deg,var(--accent),#77d9ec);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px var(--accent-glow);flex-shrink:0;overflow:hidden}
+.logo-img-wrap{width:48px;height:48px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px var(--accent-glow);flex-shrink:0;overflow:hidden}
 .logo-img-wrap img{width:100%;height:100%;object-fit:contain;padding:4px}
 .logo-title{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:1px;color:var(--accent);line-height:1}
 .logo-sub{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:2px;margin-top:3px}
@@ -440,8 +440,60 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
 @media(max-width:1150px){.dashboard-hero{grid-template-columns:1fr}.hero-side{grid-template-columns:1fr 1fr}}
 @media(max-width:950px){.dash-grid,.dash-grid-2,.form-grid,.form-grid-3{grid-template-columns:1fr}.kpi-grid,.notes-kpi-grid,.materials-kpi-grid{grid-template-columns:1fr 1fr}.vehicle-stats{grid-template-columns:1fr 1fr 1fr}.note-item-row{grid-template-columns:1fr 1fr}.note-summary,.material-modal-summary{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.topbar{padding:12px 16px;height:auto;min-height:72px;align-items:flex-start}.topbar-right{gap:8px}.topbar-status{display:none}.topbar-title{font-size:20px}.topbar-meta{flex-wrap:wrap}.page{padding:20px 16px 28px}.hero-actions{grid-template-columns:1fr}.vehicle-stats{grid-template-columns:1fr}.filters{padding:10px 12px}.service-note-head,.material-head{flex-direction:column}.note-item-row{grid-template-columns:1fr}.note-summary,.material-modal-summary{grid-template-columns:1fr}}
-@media(max-width:680px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.hamburger{display:block}.kpi-grid,.hero-side{grid-template-columns:1fr}.page{padding:16px 14px 24px}.topbar{padding:10px 14px}.dashboard-hero-title{font-size:34px}.login-box{padding:34px 24px}.dropdown-panel{right:14px;width:min(360px,calc(100vw - 28px))}}
-.login-screen{position:fixed;inset:0;background:radial-gradient(circle at top left,rgba(52,198,226,.18),transparent 30%),radial-gradient(circle at bottom right,rgba(142,178,255,.14),transparent 28%),linear-gradient(135deg,#030a14,#071828 40%,#0a2540);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}.login-screen.hidden{display:none}.login-box{background:linear-gradient(180deg,rgba(9,32,52,.96),rgba(7,26,43,.97));border:1px solid rgba(52,198,226,.22);border-radius:28px;padding:42px;max-width:420px;width:100%;text-align:center;box-shadow:0 26px 90px rgba(0,0,0,.5);position:relative;overflow:hidden}.login-box::before{content:'';position:absolute;inset:-90px auto auto -90px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(52,198,226,.16),transparent 65%)}.login-logo{width:86px;height:86px;margin:0 auto 18px;border-radius:22px;overflow:hidden;box-shadow:0 16px 36px var(--accent-glow);position:relative}.login-logo img{width:100%;height:100%;object-fit:contain;padding:10px;background:linear-gradient(135deg,var(--accent),#88def0)}.login-title{font-family:var(--display);font-size:34px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:1px}.login-sub{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:3px;margin-bottom:28px}.login-form{display:flex;flex-direction:column;gap:14px;position:relative}.login-input{background:rgba(16,42,67,.84);border:1px solid var(--border-soft);border-radius:14px;color:var(--text);font-size:14px;padding:13px 15px;outline:none;transition:.15s}.login-input:focus{border-color:rgba(52,198,226,.4);box-shadow:0 0 0 3px var(--accent-soft)}.login-input::placeholder{color:var(--text3)}.login-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#042132;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;transition:.15s;letter-spacing:1px;box-shadow:0 14px 28px rgba(52,198,226,.2)}.login-btn:hover{transform:translateY(-1px);box-shadow:0 18px 34px rgba(52,198,226,.24)}.login-error{color:var(--red);font-size:13px;min-height:18px}.login-footer{margin-top:24px;font-size:11px;color:var(--text3);font-family:var(--mono)}
+@media(max-width:680px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0;overflow-x:hidden}
+  .hamburger{display:block}
+  .page{padding:14px 12px 80px}
+  .bottom-nav{display:flex}
+  #topbar-actions{display:none}
+
+  /* Topbar compacto */
+  .topbar{padding:10px 12px;overflow:hidden}
+  .topbar-left{min-width:0;flex:1;overflow:hidden}
+  .topbar-title{font-size:15px;letter-spacing:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .topbar-badge{display:none}
+  .topbar-meta{display:none}
+  .topbar-right{flex-shrink:0;gap:6px}
+
+  /* Filtros empilhados */
+  .filters{gap:6px;padding:10px 12px}
+  .filter-label{display:none}
+  .filters input,.filters select{flex:1 1 calc(50% - 4px);max-width:100% !important;font-size:13px;padding:9px 10px;box-sizing:border-box}
+  .filters input[type="text"]{flex:1 1 100%}
+  .filters .btn-ghost{flex:1 1 100%;justify-content:center}
+
+  /* Cards */
+  .card{padding:14px 12px;border-radius:14px}
+
+  /* Tabelas */
+  table{font-size:11px}
+  th,td{padding:6px 8px}
+
+  /* Grids */
+  .kpi-grid,.hero-side{grid-template-columns:1fr 1fr}
+  .dashboard-hero-title{font-size:30px}
+
+  /* Login */
+  .login-box{padding:34px 20px}
+
+  /* Dropdowns */
+  .dropdown-panel{right:8px;width:min(340px,calc(100vw - 16px))}
+
+  /* Table scroll suave */
+  .table-wrap{max-width:100%;-webkit-overflow-scrolling:touch}
+}
+.sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:99;touch-action:none}
+.sidebar-backdrop.show{display:block}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:60px;background:rgba(7,26,43,.97);border-top:1px solid var(--border-soft);z-index:90;backdrop-filter:blur(18px);padding:0 4px}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:none;color:var(--text3);font-size:9px;font-family:var(--mono);letter-spacing:.5px;cursor:pointer;padding:6px 4px;transition:color .15s;-webkit-tap-highlight-color:transparent;min-height:44px}
+.bnav-item.active{color:var(--accent)}
+.bnav-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+.mobile-fab{display:none;position:fixed;bottom:72px;right:18px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#042132;font-size:28px;font-weight:800;align-items:center;justify-content:center;z-index:88;box-shadow:0 8px 28px rgba(52,198,226,.4),0 2px 8px rgba(0,0,0,.3);border:none;cursor:pointer;transition:transform .12s,box-shadow .12s;line-height:1;-webkit-tap-highlight-color:transparent}
+.mobile-fab:active{transform:scale(.88);box-shadow:0 4px 14px rgba(52,198,226,.3)}
+.mobile-fab.show{display:flex}
+.login-screen{position:fixed;inset:0;background:radial-gradient(circle at top left,rgba(52,198,226,.18),transparent 30%),radial-gradient(circle at bottom right,rgba(142,178,255,.14),transparent 28%),linear-gradient(135deg,#030a14,#071828 40%,#0a2540);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}.login-screen.hidden{display:none}.login-box{background:linear-gradient(180deg,rgba(9,32,52,.96),rgba(7,26,43,.97));border:1px solid rgba(52,198,226,.22);border-radius:28px;padding:42px;max-width:420px;width:100%;text-align:center;box-shadow:0 26px 90px rgba(0,0,0,.5);position:relative;overflow:hidden}.login-box::before{content:'';position:absolute;inset:-90px auto auto -90px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(52,198,226,.16),transparent 65%)}.login-logo{width:86px;height:86px;margin:0 auto 18px;border-radius:22px;overflow:hidden;box-shadow:0 16px 36px var(--accent-glow);position:relative}.login-logo img{width:100%;height:100%;object-fit:contain;padding:10px;background:#fff}.login-title{font-family:var(--display);font-size:34px;font-weight:800;color:var(--accent);margin-bottom:4px;letter-spacing:1px}.login-sub{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:3px;margin-bottom:28px}.login-form{display:flex;flex-direction:column;gap:14px;position:relative}.login-input{background:rgba(16,42,67,.84);border:1px solid var(--border-soft);border-radius:14px;color:var(--text);font-size:14px;padding:13px 15px;outline:none;transition:.15s}.login-input:focus{border-color:rgba(52,198,226,.4);box-shadow:0 0 0 3px var(--accent-soft)}.login-input::placeholder{color:var(--text3)}.login-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#042132;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;transition:.15s;letter-spacing:1px;box-shadow:0 14px 28px rgba(52,198,226,.2)}.login-btn:hover{transform:translateY(-1px);box-shadow:0 18px 34px rgba(52,198,226,.24)}.login-error{color:var(--red);font-size:13px;min-height:18px}.login-footer{margin-top:24px;font-size:11px;color:var(--text3);font-family:var(--mono)}
 .bell-btn{position:relative;background:rgba(16,42,67,.62);border:1px solid var(--border-soft);color:var(--text2);font-size:16px;cursor:pointer;padding:7px 9px;border-radius:12px;transition:.15s}.bell-btn:hover{background:rgba(16,42,67,.9)}.bell-count{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:9px;font-family:var(--mono);padding:1px 4px;border-radius:99px;min-width:16px;text-align:center;display:none}.bell-count.show{display:block}
 .user-menu-btn{display:flex;align-items:center;gap:7px;background:rgba(16,42,67,.72);border:1px solid var(--border-soft);color:var(--text2);padding:6px 12px;border-radius:12px;cursor:pointer;font-size:12px;font-weight:700}.user-menu-btn:hover{background:rgba(16,42,67,.95)}.user-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:800}
 .dropdown-panel{position:absolute;top:62px;right:26px;width:360px;max-height:460px;background:linear-gradient(180deg,rgba(9,32,52,.98),rgba(7,26,43,.99));border:1px solid var(--border-soft);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.42);overflow:hidden;display:none;z-index:60}.dropdown-panel.open{display:block}.dropdown-header{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;background:rgba(16,42,67,.78)}.dropdown-header-title{font-family:var(--display);font-size:15px;font-weight:700;color:var(--accent)}.dropdown-body{overflow-y:auto;max-height:380px}.alert-item{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:.1s}.alert-item:hover{background:rgba(16,42,67,.55)}.alert-item.unread{border-left:3px solid var(--accent)}.alert-item.pri-critica{border-left-color:var(--red)}.alert-item.pri-alta{border-left-color:var(--orange)}.alert-title{font-size:13px;font-weight:600;margin-bottom:3px}.alert-msg{font-size:11px;color:var(--text3)}.alert-time{font-size:9px;color:var(--text3);font-family:var(--mono);margin-top:4px}
@@ -449,7 +501,107 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
 .sidebar-nav .nav-item.admin-only{display:none}body.is-admin .sidebar-nav .nav-item.admin-only{display:flex}
 .badge-admin{background:rgba(167,139,250,.15);color:var(--purple)}.badge-operador{background:rgba(26,143,212,.15);color:var(--accent)}
 .alert-card-dash{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:8px;border-left:3px solid var(--yellow)}.alert-card-dash.pri-critica{border-left-color:var(--red);background:rgba(224,82,82,.05)}.alert-card-dash.pri-alta{border-left-color:var(--orange)}
+.badge-operador_maquina{background:rgba(50,212,138,.15);color:var(--green)}
 
+/* ══ MAQUINÁRIO ══════════════════════════════════════════ */
+.maq-admin{display:none}body.is-admin .maq-admin{display:block}
+.maq-operador{display:none}
+.maq-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.maq-tab{background:rgba(16,42,67,.62);border:1px solid var(--border-soft);color:var(--text2);padding:10px 18px;border-radius:12px;cursor:pointer;font-size:13px;font-weight:700;font-family:var(--sans);transition:.15s}
+.maq-tab:hover{background:rgba(16,42,67,.9)}
+.maq-tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#042132;border-color:transparent;box-shadow:0 8px 18px var(--accent-glow)}
+.maq-tab-pane{display:none}.maq-tab-pane.active{display:block}
+.maq-summary{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--text3);font-family:var(--mono)}
+.maq-summary b{color:var(--text);font-size:14px;margin-right:4px}
+.maq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.maq-card{background:linear-gradient(180deg,rgba(9,32,52,.92),rgba(7,26,43,.92));border:1px solid var(--border-soft);border-radius:16px;padding:18px;position:relative;overflow:hidden;transition:.15s}
+.maq-card:hover{border-color:rgba(52,198,226,.3);transform:translateY(-2px)}
+.maq-card.em-uso{border-color:var(--orange);background:linear-gradient(180deg,rgba(245,157,76,.08),rgba(7,26,43,.92))}
+.maq-card.em-uso::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--orange),var(--yellow))}
+.maq-card-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;gap:8px}
+.maq-card-nome{font-family:var(--display);font-size:18px;font-weight:800;color:var(--accent);letter-spacing:.5px}
+.maq-card-cod{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
+.maq-card-tipo{font-size:11px;color:var(--text2);margin-top:8px;text-transform:uppercase;letter-spacing:1px;font-family:var(--mono)}
+.maq-card-desc{font-size:12px;color:var(--text3);margin-top:10px;line-height:1.4;min-height:34px}
+.maq-card-status{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:10px;font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.maq-card-status.disp{background:rgba(50,212,138,.15);color:var(--green)}
+.maq-card-status.uso{background:rgba(245,157,76,.18);color:var(--orange)}
+.maq-card-status .dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.maq-card-status.uso .dot{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.maq-card-foot{display:flex;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border-soft)}
+.maq-card-foot .btn{flex:1;padding:7px 10px;font-size:11px}
+.maq-card-info{font-size:10px;color:var(--text3);margin-top:8px;font-family:var(--mono)}
+
+/* Visão Operador (fullscreen) */
+body.is-operador-maquina .sidebar,body.is-operador-maquina .bottom-nav,body.is-operador-maquina .mobile-fab,body.is-operador-maquina .topbar{display:none !important}
+body.is-operador-maquina .main{margin-left:0}
+body.is-operador-maquina .page{padding:0;display:none}
+body.is-operador-maquina #page-maquinario{display:block;padding:0}
+body.is-operador-maquina .maq-admin{display:none !important}
+body.is-operador-maquina .maq-operador{display:block;min-height:100vh;padding:24px 18px;max-width:520px;margin:0 auto}
+
+.op-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-top:8px}
+.op-logo{display:flex;align-items:center;gap:10px}
+.op-logo-img{width:42px;height:42px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.op-logo-img img{width:100%;height:100%;object-fit:contain;padding:4px}
+.op-logo-txt{font-family:var(--display);font-size:18px;font-weight:800;color:var(--accent);letter-spacing:1px}
+.op-logout{background:rgba(239,103,103,.15);border:1px solid rgba(239,103,103,.3);color:var(--red);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:700}
+
+.op-greeting{background:linear-gradient(135deg,rgba(52,198,226,.12),rgba(22,151,188,.06));border:1px solid var(--border-soft);border-radius:18px;padding:18px 20px;margin-bottom:20px}
+.op-greeting-hi{font-size:13px;color:var(--text3);font-family:var(--mono);letter-spacing:1px}
+.op-greeting-name{font-family:var(--display);font-size:24px;font-weight:800;color:var(--text);margin-top:4px}
+.op-greeting-sub{font-size:12px;color:var(--text2);margin-top:6px}
+
+.op-section{background:linear-gradient(180deg,rgba(9,32,52,.92),rgba(7,26,43,.92));border:1px solid var(--border-soft);border-radius:18px;padding:20px;margin-bottom:18px}
+.op-section-title{font-family:var(--display);font-size:13px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
+
+.op-maq-list{display:grid;gap:10px}
+.op-maq-card{background:rgba(16,42,67,.55);border:2px solid var(--border-soft);border-radius:14px;padding:14px;cursor:pointer;transition:.15s;display:flex;align-items:center;gap:12px}
+.op-maq-card:hover{border-color:rgba(52,198,226,.3);background:rgba(16,42,67,.85)}
+.op-maq-card.selected{border-color:var(--accent);background:rgba(52,198,226,.1);box-shadow:0 8px 22px var(--accent-glow)}
+.op-maq-card.indisp{opacity:.5;cursor:not-allowed}
+.op-maq-card.indisp:hover{border-color:var(--border-soft);background:rgba(16,42,67,.55)}
+.op-maq-icon{width:48px;height:48px;background:rgba(52,198,226,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
+.op-maq-icon svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.op-maq-info{flex:1;min-width:0}
+.op-maq-nome{font-weight:700;font-size:15px;color:var(--text)}
+.op-maq-cod{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
+.op-maq-badge{font-size:9px;font-family:var(--mono);padding:3px 7px;border-radius:99px;font-weight:700;text-transform:uppercase}
+.op-maq-badge.disp{background:rgba(50,212,138,.18);color:var(--green)}
+.op-maq-badge.uso{background:rgba(245,157,76,.18);color:var(--orange)}
+
+.op-btn-big{width:100%;padding:22px;font-size:18px;font-weight:800;border-radius:16px;border:none;cursor:pointer;font-family:var(--display);letter-spacing:2px;transition:.15s;display:flex;align-items:center;justify-content:center;gap:10px;-webkit-tap-highlight-color:transparent}
+.op-btn-big svg{width:24px;height:24px}
+.op-btn-iniciar{background:linear-gradient(135deg,var(--green),#28a86d);color:#042132;box-shadow:0 14px 32px rgba(50,212,138,.32)}
+.op-btn-iniciar:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 18px 38px rgba(50,212,138,.42)}
+.op-btn-iniciar:disabled{background:rgba(50,212,138,.2);color:rgba(255,255,255,.4);cursor:not-allowed;box-shadow:none}
+.op-btn-encerrar{background:linear-gradient(135deg,var(--red),#c74343);color:#fff;box-shadow:0 14px 32px rgba(239,103,103,.32)}
+.op-btn-encerrar:hover{transform:translateY(-2px);box-shadow:0 18px 38px rgba(239,103,103,.42)}
+
+.op-ativo{background:linear-gradient(135deg,rgba(50,212,138,.18),rgba(40,168,109,.06));border:1px solid rgba(50,212,138,.3);border-radius:18px;padding:22px;margin-bottom:18px;text-align:center}
+.op-ativo-label{font-size:11px;color:var(--green);font-family:var(--mono);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.op-ativo-maquina{font-family:var(--display);font-size:26px;font-weight:800;color:var(--text);letter-spacing:.5px}
+.op-ativo-cod{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+.op-cron{font-family:var(--mono);font-size:42px;font-weight:800;color:var(--accent);letter-spacing:3px;margin:18px 0;text-shadow:0 0 18px var(--accent-glow);font-variant-numeric:tabular-nums}
+.op-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.op-info-item{background:rgba(16,42,67,.55);border-radius:10px;padding:10px;text-align:left}
+.op-info-label{font-size:9px;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+.op-info-val{font-size:13px;color:var(--text);font-weight:700;margin-top:2px}
+.op-geo-status{font-size:11px;color:var(--text3);margin-top:10px;font-family:var(--mono)}
+.op-geo-status.ok{color:var(--green)}.op-geo-status.err{color:var(--orange)}
+.op-empty{text-align:center;color:var(--text3);font-size:13px;padding:20px}
+
+.percurso-status{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:99px;font-size:10px;font-family:var(--mono);font-weight:700;text-transform:uppercase}
+.percurso-status.em_andamento{background:rgba(245,157,76,.18);color:var(--orange)}
+.percurso-status.concluido{background:rgba(50,212,138,.15);color:var(--green)}
+
+@media(max-width:680px){
+  .maq-grid{grid-template-columns:1fr}
+  .maq-tab{flex:1;padding:10px 8px;font-size:12px;text-align:center}
+  body.is-operador-maquina .maq-operador{padding:16px 12px}
+  .op-cron{font-size:38px}
+}
 </style>
 </head>
 <body>
@@ -547,6 +699,18 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
     <path d="M4 12l8 4 8-4"></path>
     <path d="M4 16l8 4 8-4"></path>
   </symbol>
+  <symbol id="i-machine" viewBox="0 0 24 24">
+    <path d="M3 17h13l3-4h2v6H3v-2Z"></path>
+    <path d="M5 17v-4h6l3-3h3l1 3"></path>
+    <circle cx="7" cy="19" r="2"></circle>
+    <circle cx="17" cy="19" r="2"></circle>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24">
+    <path d="M6 4l14 8-14 8V4Z" fill="currentColor"></path>
+  </symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24">
+    <rect x="5" y="5" width="14" height="14" rx="2" fill="currentColor"></rect>
+  </symbol>
 </svg>
 
 <aside class="sidebar" id="sidebar">
@@ -565,6 +729,7 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
     <div class="nav-item" data-page="abastecimentos"><span class="icon"><svg aria-hidden="true"><use href="#i-fuel"></use></svg></span><span class="nav-label">Abastecimentos</span></div>
     <div class="nav-item" data-page="veiculos"><span class="icon"><svg aria-hidden="true"><use href="#i-vehicle"></use></svg></span><span class="nav-label">Veículos</span></div>
     <div class="nav-section">Operação</div>
+    <div class="nav-item nav-maquinario" data-page="maquinario"><span class="icon"><svg aria-hidden="true"><use href="#i-machine"></use></svg></span><span class="nav-label">Maquinário</span></div>
     <div class="nav-item" data-page="checklist"><span class="icon"><svg aria-hidden="true"><use href="#i-checklist"></use></svg></span><span class="nav-label">Checklist</span></div>
     <div class="nav-item" data-page="transferencias"><span class="icon"><svg aria-hidden="true"><use href="#i-transfer"></use></svg></span><span class="nav-label">Transferências</span></div>
     <div class="nav-item" data-page="manutencao"><span class="icon"><svg aria-hidden="true"><use href="#i-maintenance"></use></svg></span><span class="nav-label">Manutenção</span></div>
@@ -586,6 +751,7 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
     <div class="footer-info"><span class="status-dot"></span><span id="db-count">—</span> registros</div>
   </div>
 </aside>
+<div id="sidebar-backdrop" class="sidebar-backdrop"></div>
 
 <div class="main">
   <header class="topbar">
@@ -611,7 +777,7 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
           <div class="topbar-status-time" id="topbar-status-time">--:--</div>
         </div>
       </div>
-      <div id="topbar-actions" style="display:flex;gap:8px"></div>
+      <div id="topbar-actions" style="display:none"></div>
       <button class="bell-btn" id="bell-btn" onclick="toggleAlertPanel()">🔔<span class="bell-count" id="bell-count">0</span></button>
       <button class="user-menu-btn" onclick="toggleUserMenu()"><div class="user-avatar" id="user-avatar">A</div><span id="user-display-name">Admin</span></button>
     </div>
@@ -822,7 +988,51 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
   <div class="page" id="page-motoristas"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-primary" onclick="openMotoristaModal()">＋ Novo Motorista</button></div><div id="motoristas-list"></div></div>
   <div class="page" id="page-alertas"><div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary" onclick="checkAlerts()">🔍 Verificar</button><button class="btn btn-ghost" onclick="markAllRead()">✓ Lidos</button><button class="btn btn-warning" onclick="sendAlertEmail()">📧 E-mail</button></div><div id="alertas-list"></div></div>
   <div class="page" id="page-usuarios"><div style="display:flex;justify-content:flex-end;margin-bottom:16px"><button class="btn btn-primary" onclick="openUsuarioModal()">＋ Novo Usuário</button></div><div class="card"><div class="table-wrap" id="usuarios-table"></div></div></div>
+
+  <!-- ══ MAQUINÁRIO ══ -->
+  <div class="page" id="page-maquinario">
+    <!-- VISÃO ADMIN -->
+    <div class="maq-admin">
+      <div class="maq-tabs">
+        <button class="maq-tab active" data-tab="maquinas" onclick="maqTab('maquinas')">🚜 Máquinas</button>
+        <button class="maq-tab" data-tab="historico" onclick="maqTab('historico')">📋 Histórico</button>
+        <button class="maq-tab" data-tab="auditoria" onclick="maqTab('auditoria')">🔒 Auditoria</button>
+      </div>
+      <div class="maq-tab-pane active" id="maq-pane-maquinas">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+          <div class="maq-summary" id="maq-summary"></div>
+          <button class="btn btn-primary" onclick="openMaquinaModal()">＋ Nova Máquina</button>
+        </div>
+        <div id="maq-list" class="maq-grid"></div>
+      </div>
+      <div class="maq-tab-pane" id="maq-pane-historico">
+        <div class="filters" style="margin-bottom:14px">
+          <div class="filter-group"><label class="filter-label">Máquina</label><select id="hist-f-maquina"><option value="">Todas</option></select></div>
+          <div class="filter-group"><label class="filter-label">Operador</label><select id="hist-f-operador"><option value="">Todos</option></select></div>
+          <div class="filter-group"><label class="filter-label">Status</label><select id="hist-f-status"><option value="">Todos</option><option value="em_andamento">Em andamento</option><option value="concluido">Concluído</option></select></div>
+          <div class="filter-group"><label class="filter-label">De</label><input type="date" id="hist-f-inicio"></div>
+          <div class="filter-group"><label class="filter-label">Até</label><input type="date" id="hist-f-fim"></div>
+          <button class="btn btn-primary" onclick="loadHistorico()">🔍 Filtrar</button>
+          <button class="btn btn-ghost" onclick="exportPercursosCSV()">⬇ CSV</button>
+        </div>
+        <div class="card"><div class="table-wrap" id="historico-table"></div></div>
+      </div>
+      <div class="maq-tab-pane" id="maq-pane-auditoria">
+        <div class="card"><div class="table-wrap" id="auditoria-table"></div></div>
+      </div>
+    </div>
+    <!-- VISÃO OPERADOR -->
+    <div class="maq-operador" id="maq-operador-view"></div>
+  </div>
 </div>
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="bnav-item active" data-page="dashboard" onclick="navigate('dashboard')"><svg viewBox="0 0 24 24"><use href="#i-dashboard"></use></svg><span>Início</span></button>
+  <button class="bnav-item" data-page="abastecimentos" onclick="navigate('abastecimentos')"><svg viewBox="0 0 24 24"><use href="#i-fuel"></use></svg><span>Abast.</span></button>
+  <button class="bnav-item" data-page="veiculos" onclick="navigate('veiculos')"><svg viewBox="0 0 24 24"><use href="#i-vehicle"></use></svg><span>Veículos</span></button>
+  <button class="bnav-item" data-page="checklist" onclick="navigate('checklist')"><svg viewBox="0 0 24 24"><use href="#i-checklist"></use></svg><span>Checklist</span></button>
+  <button class="bnav-item" onclick="$('hamburger').click()"><svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg><span>Menu</span></button>
+</nav>
+<button id="mobile-fab" class="mobile-fab">＋</button>
 
 <!-- ══ MODAL ABASTECIMENTO ══ -->
 <div class="modal-overlay" id="modal-abastecimento">
@@ -1075,8 +1285,9 @@ div[style*="break-inside"]:hover .galeria-del-wrap{opacity:1!important}
 
 
 <div class="modal-overlay" id="modal-motorista"><div class="modal" style="max-width:500px"><div class="modal-header"><div class="modal-title" id="modal-mot-title">NOVO MOTORISTA</div><button class="modal-close" onclick="closeModal('modal-motorista')">✕</button></div><div class="modal-body"><input type="hidden" id="mot-id"><div class="form-grid"><div class="form-group"><label>Nome *</label><input type="text" id="mot-nome"></div><div class="form-group"><label>CNH</label><input type="text" id="mot-cnh"></div><div class="form-group"><label>Validade CNH</label><input type="date" id="mot-cnh-val"></div><div class="form-group"><label>Telefone</label><input type="text" id="mot-tel"></div><div class="form-group full"><label>E-mail</label><input type="email" id="mot-email"></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modal-motorista')">Cancelar</button><button class="btn btn-primary" onclick="saveMotorista()">💾 Salvar</button></div></div></div>
-<div class="modal-overlay" id="modal-usuario"><div class="modal" style="max-width:500px"><div class="modal-header"><div class="modal-title" id="modal-usr-title">NOVO USUÁRIO</div><button class="modal-close" onclick="closeModal('modal-usuario')">✕</button></div><div class="modal-body"><input type="hidden" id="usr-id"><div class="form-grid"><div class="form-group"><label>Nome *</label><input type="text" id="usr-nome"></div><div class="form-group"><label>Login *</label><input type="text" id="usr-login"></div><div class="form-group"><label>E-mail</label><input type="email" id="usr-email"></div><div class="form-group"><label>Senha *</label><input type="password" id="usr-senha"></div><div class="form-group"><label>Perfil</label><select id="usr-perfil"><option value="operador">Operador</option><option value="admin">Administrador</option></select></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modal-usuario')">Cancelar</button><button class="btn btn-primary" onclick="saveUsuario()">💾 Salvar</button></div></div></div>
+<div class="modal-overlay" id="modal-usuario"><div class="modal" style="max-width:520px"><div class="modal-header"><div class="modal-title" id="modal-usr-title">NOVO USUÁRIO</div><button class="modal-close" onclick="closeModal('modal-usuario')">✕</button></div><div class="modal-body"><input type="hidden" id="usr-id"><div class="form-grid"><div class="form-group"><label>Nome *</label><input type="text" id="usr-nome"></div><div class="form-group"><label>Login *</label><input type="text" id="usr-login"></div><div class="form-group"><label>E-mail</label><input type="email" id="usr-email"></div><div class="form-group"><label>Senha *</label><input type="password" id="usr-senha"></div><div class="form-group"><label>Perfil</label><select id="usr-perfil" onchange="onPerfilChange()"><option value="operador">Operador (sistema)</option><option value="operador_maquina">Operador de Máquina</option><option value="admin">Administrador</option></select></div><div class="form-group" id="usr-mot-wrap" style="display:none"><label>Motorista vinculado *</label><select id="usr-motorista" onchange="onMotoristaChange()"><option value="">— selecione —</option></select><div style="font-size:11px;color:var(--text3);margin-top:6px;font-family:var(--mono)">Operador de Máquina precisa estar vinculado a um trabalhador cadastrado.</div></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modal-usuario')">Cancelar</button><button class="btn btn-primary" onclick="saveUsuario()">💾 Salvar</button></div></div></div>
 <div class="modal-overlay" id="modal-senha"><div class="modal" style="max-width:400px"><div class="modal-header"><div class="modal-title">ALTERAR SENHA</div><button class="modal-close" onclick="closeModal('modal-senha')">✕</button></div><div class="modal-body"><div class="form-group" style="margin-bottom:12px"><label>Senha Atual</label><input type="password" id="pwd-atual"></div><div class="form-group" style="margin-bottom:12px"><label>Nova Senha</label><input type="password" id="pwd-nova"></div><div class="form-group"><label>Confirmar</label><input type="password" id="pwd-conf"></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modal-senha')">Cancelar</button><button class="btn btn-primary" onclick="changeSenha()">💾 Alterar</button></div></div></div>
+<div class="modal-overlay" id="modal-maquina"><div class="modal" style="max-width:520px"><div class="modal-header"><div class="modal-title" id="modal-maq-title">NOVA MÁQUINA</div><button class="modal-close" onclick="closeModal('modal-maquina')">✕</button></div><div class="modal-body"><input type="hidden" id="maq-id"><div class="form-grid"><div class="form-group"><label>Nome *</label><input type="text" id="maq-nome" placeholder="Ex: Retroescavadeira CAT 416"></div><div class="form-group"><label>Código *</label><input type="text" id="maq-codigo" placeholder="Ex: RET-001" style="text-transform:uppercase"></div><div class="form-group"><label>Tipo / Categoria</label><input type="text" id="maq-tipo" placeholder="Ex: Retroescavadeira"></div><div class="form-group"><label>Ano</label><input type="number" id="maq-ano" min="1900" max="2100"></div><div class="form-group full"><label>Descrição</label><textarea id="maq-desc" rows="3" placeholder="Observações, características"></textarea></div></div></div><div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('modal-maquina')">Cancelar</button><button class="btn btn-primary" onclick="saveMaquina()">💾 Salvar</button></div></div></div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -1151,12 +1362,14 @@ const PAGE_META = {
   galeria:{title:'Galeria',sub:'fotos',hint:'comprovantes e registros visuais',action:''},
   exportar:{title:'Exportar',sub:'dados',hint:'backup e interoperabilidade',action:''},
   motoristas:{title:'Motoristas',sub:'equipe',hint:'CNH, contatos e validade',action:''},
+  maquinario:{title:'Maquinário',sub:'operação',hint:'máquinas, percursos e operadores em campo',action:''},
   alertas:{title:'Alertas',sub:'manutenção',hint:'prioridades que exigem ação',action:''},
   usuarios:{title:'Usuários',sub:'gestão',hint:'permissões e acessos do sistema',action:''},
   config:{title:'Configurações',sub:'sistema',hint:'empresa, SMTP e limites de alerta',action:''},
 };
 
 function navigate(page){
+  localStorage.setItem('ilnet_page',page);
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.sidebar-nav .nav-item[data-page]').forEach(n=>n.classList.remove('active'));
   $('page-'+page).classList.add('active');
@@ -1169,12 +1382,22 @@ function navigate(page){
   // re-attach btn listener
   const btn=$('btn-novo-abast');
   if(btn) btn.addEventListener('click',()=>openAbastModal());
+  // sync bottom nav
+  document.querySelectorAll('.bnav-item[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+  // sync FAB
+  const fab=$('mobile-fab');
+  if(fab){const topBtn=$('topbar-actions').querySelector('.btn');if(topBtn){fab.classList.add('show');fab.onclick=()=>topBtn.click();}else{fab.classList.remove('show');}}
   $('sidebar').classList.remove('open');
   if(typeof closeAllPanels==='function')closeAllPanels();
   renderPage(page);
 }
 
 function renderPage(p){
+  const cm=new Date().toISOString().slice(0,7);
+  if(p==='abastecimentos'&&!$('f-mes').value)$('f-mes').value=cm;
+  if(p==='notas'&&!$('nt-f-mes').value)$('nt-f-mes').value=cm;
+  if(p==='materiais'&&!$('mt-f-mes').value)$('mt-f-mes').value=cm;
+  if(p==='km'&&!$('km-f-mes').value)$('km-f-mes').value=cm;
   if(p==='dashboard') loadDashboard();
   if(p==='abastecimentos') loadAbastecimentos();
   if(p==='veiculos') loadVeiculos();
@@ -1190,10 +1413,13 @@ function renderPage(p){
   if(p==='alertas') loadAlertasPage();
   if(p==='usuarios') loadUsuarios();
   if(p==='config') loadConfig();
+  if(p==='maquinario') loadMaquinario();
 }
 
-document.querySelectorAll('.sidebar-nav .nav-item[data-page]').forEach(el=>el.addEventListener('click',()=>navigate(el.dataset.page)));
-$('hamburger').addEventListener('click',()=>$('sidebar').classList.toggle('open'));
+function closeSidebar(){$('sidebar').classList.remove('open');$('sidebar-backdrop').classList.remove('show');}
+document.querySelectorAll('.sidebar-nav .nav-item[data-page]').forEach(el=>el.addEventListener('click',()=>{navigate(el.dataset.page);closeSidebar();}));
+$('hamburger').addEventListener('click',()=>{const o=$('sidebar').classList.toggle('open');$('sidebar-backdrop').classList.toggle('show',o);});
+$('sidebar-backdrop').addEventListener('click',closeSidebar);
 
 // ══ MODALS ═══════════════════════════════════════════════
 function openModal(id){$(id).classList.add('open');}
@@ -2266,9 +2492,9 @@ async function importJSON(input){
 // ══ AUTH ══════════════════════════════════════════════════
 let TOKEN=localStorage.getItem('ilnet_token')||'';let USER=JSON.parse(localStorage.getItem('ilnet_user')||'null');
 async function doLogin(){const l=$('login-user').value.trim(),s=$('login-pass').value;if(!l||!s){$('login-error').textContent='Preencha login e senha';return}try{$('login-error').textContent='';const r=await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({login:l,senha:s})});const d=await r.json();if(!r.ok){$('login-error').textContent=d.error;return}TOKEN=d.token;USER=d.user;localStorage.setItem('ilnet_token',TOKEN);localStorage.setItem('ilnet_user',JSON.stringify(USER));showApp()}catch(e){$('login-error').textContent='Erro de conexão'}}
-function doLogout(){fetch('/api/auth/logout',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN}}).catch(()=>{});TOKEN='';USER=null;localStorage.removeItem('ilnet_token');localStorage.removeItem('ilnet_user');$('login-screen').classList.remove('hidden')}
+function doLogout(){fetch('/api/auth/logout',{method:'POST',headers:{'Authorization':'Bearer '+TOKEN}}).catch(()=>{});TOKEN='';USER=null;localStorage.removeItem('ilnet_token');localStorage.removeItem('ilnet_user');localStorage.removeItem('ilnet_page');$('login-screen').classList.remove('hidden')}
 $('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin()});$('login-user').addEventListener('keydown',e=>{if(e.key==='Enter')$('login-pass').focus()});
-async function showApp(){$('login-screen').classList.add('hidden');$('user-display-name').textContent=USER.nome?.split(' ')[0]||USER.login;$('user-avatar').textContent=(USER.nome||USER.login)[0].toUpperCase();$('user-full-name').textContent=USER.nome;$('user-role').textContent=USER.perfil==='admin'?'Administrador':'Operador';if(USER.perfil==='admin')document.body.classList.add('is-admin');else document.body.classList.remove('is-admin');Chart.defaults.color='#4a7a96';const activePage=document.querySelector('.sidebar-nav .nav-item.active')?.dataset.page||'dashboard';$('topbar-context').textContent=PAGE_META[activePage]?.hint||'operação em tempo real';updateTopbarChrome();await populateSelects();await loadDashboard();updateAlertCount();const btn=$('btn-novo-abast');if(btn)btn.addEventListener('click',()=>openAbastModal())}
+async function showApp(){$('login-screen').classList.add('hidden');$('user-display-name').textContent=USER.nome?.split(' ')[0]||USER.login;$('user-avatar').textContent=(USER.nome||USER.login)[0].toUpperCase();$('user-full-name').textContent=USER.nome;$('user-role').textContent=USER.perfil==='admin'?'Administrador':USER.perfil==='operador_maquina'?'Operador de Máquina':'Operador';document.body.classList.toggle('is-admin',USER.perfil==='admin');document.body.classList.toggle('is-operador-maquina',USER.perfil==='operador_maquina');if(USER.perfil==='operador_maquina'){renderOperadorView();return}Chart.defaults.color='#4a7a96';const activePage=document.querySelector('.sidebar-nav .nav-item.active')?.dataset.page||'dashboard';$('topbar-context').textContent=PAGE_META[activePage]?.hint||'operação em tempo real';updateTopbarChrome();await populateSelects();navigate(localStorage.getItem('ilnet_page')||'dashboard');updateAlertCount();const btn=$('btn-novo-abast');if(btn)btn.addEventListener('click',()=>openAbastModal())}
 async function checkSession(){if(!TOKEN){$('login-screen').classList.remove('hidden');return}try{const r=await fetch('/api/auth/me',{headers:{'Authorization':'Bearer '+TOKEN}});if(!r.ok){doLogout();return}USER=await r.json();localStorage.setItem('ilnet_user',JSON.stringify(USER));showApp()}catch(e){doLogout()}}
 function closeAllPanels(){$('alert-panel').classList.remove('open');$('user-panel').classList.remove('open')}
 function toggleAlertPanel(){$('user-panel').classList.remove('open');$('alert-panel').classList.toggle('open');if($('alert-panel').classList.contains('open'))loadAlertDropdown()}
@@ -2290,10 +2516,54 @@ async function loadAlertDropdown(){const rows=await GET('/api/alertas?limit=10')
 async function loadAlertasPage(){const rows=await GET('/api/alertas?limit=100');const el=$('alertas-list');if(!rows.length){el.innerHTML='<div class="empty"><div class="empty-icon">🔔</div><div class="empty-text">Nenhum alerta</div><div class="empty-sub">Clique Verificar</div></div>';return}el.innerHTML=rows.map(a=>{const pc={critica:'var(--red)',alta:'var(--orange)',media:'var(--yellow)'}[a.prioridade]||'var(--text3)';return`<div class="alert-card-dash pri-${a.prioridade}" style="opacity:${a.resolvido?'.5':'1'}"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div><div style="font-weight:700;font-size:14px;margin-bottom:3px">${a.titulo}</div><div style="font-size:12px;color:var(--text3)">${a.mensagem}</div><div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:4px">${fmtDate(a.criado_em)} • <span style="color:${pc}">${a.prioridade.toUpperCase()}</span>${a.resolvido?' • ✅':''}</div></div><div style="display:flex;gap:4px;flex-shrink:0">${!a.resolvido?`<button class="btn btn-success btn-sm" onclick="PUT('/api/alertas/${a.id}/resolver').then(()=>{updateAlertCount();loadAlertasPage()})">✓</button>`:''}  <button class="btn btn-danger btn-sm btn-icon" onclick="DEL('/api/alertas/${a.id}').then(()=>{updateAlertCount();loadAlertasPage()})">🗑</button></div></div></div>`}).join('')}
 
 // USUARIOS
-function openUsuarioModal(u){$('modal-usr-title').textContent=u?'EDITAR':'NOVO USUÁRIO';$('usr-id').value=u?.id||'';$('usr-nome').value=u?.nome||'';$('usr-login').value=u?.login||'';$('usr-email').value=u?.email||'';$('usr-senha').value='';$('usr-perfil').value=u?.perfil||'operador';if(u)$('usr-login').setAttribute('readonly','');else $('usr-login').removeAttribute('readonly');openModal('modal-usuario')}
-async function saveUsuario(){const n=$('usr-nome').value.trim(),l=$('usr-login').value.trim(),s=$('usr-senha').value,id=$('usr-id').value;if(!n){toast('Nome','err');return}if(!id&&(!l||!s)){toast('Login e senha','err');return}const b={nome:n,login:l,email:$('usr-email').value.trim(),perfil:$('usr-perfil').value};if(s)b.senha=s;try{if(id)await PUT('/api/usuarios/'+id,b);else await POST('/api/usuarios',b);closeModal('modal-usuario');loadUsuarios();toast('Salvo!')}catch(e){toast(e.message,'err')}}
-async function loadUsuarios(){const rows=await GET('/api/usuarios');$('usuarios-table').innerHTML=`<table><thead><tr><th>Nome</th><th>Login</th><th>E-mail</th><th>Perfil</th><th>Status</th><th></th></tr></thead><tbody>${rows.map(u=>`<tr><td><strong>${u.nome}</strong></td><td style="font-family:var(--mono)">${u.login}</td><td style="font-size:12px">${u.email||'—'}</td><td><span class="badge badge-${u.perfil}">${u.perfil==='admin'?'👑 Admin':'👤 Op'}</span></td><td>${u.ativo?'✅':'❌'}</td><td><div style="display:flex;gap:3px"><button class="btn btn-ghost btn-sm btn-icon" onclick='openUsuarioModal(${JSON.stringify(u).replace(/'/g,"&#39;")})'>✏️</button>${u.id!==USER?.id?`<button class="btn btn-danger btn-sm btn-icon" onclick="deleteUsuario('${u.id}')">🗑</button>`:''}</div></td></tr>`).join('')}</tbody></table>`}
+async function fillMotoristasSelect(selectedId){const ms=await GET('/api/motoristas');$('usr-motorista').innerHTML='<option value="">— selecione —</option>'+ms.map(m=>`<option value="${m.id}" data-nome="${m.nome.replace(/"/g,'&quot;')}" ${m.id===selectedId?'selected':''}>${m.nome}${m.cnh?' — CNH '+m.cnh:''}</option>`).join('')}
+function onPerfilChange(){const isOp=$('usr-perfil').value==='operador_maquina';$('usr-mot-wrap').style.display=isOp?'block':'none';if(isOp&&!$('usr-motorista').options.length)fillMotoristasSelect()}
+function onMotoristaChange(){const sel=$('usr-motorista').selectedOptions[0];if(sel&&sel.dataset.nome&&!$('usr-id').value){if(!$('usr-nome').value.trim())$('usr-nome').value=sel.dataset.nome}}
+async function openUsuarioModal(u){$('modal-usr-title').textContent=u?'EDITAR':'NOVO USUÁRIO';$('usr-id').value=u?.id||'';$('usr-nome').value=u?.nome||'';$('usr-login').value=u?.login||'';$('usr-email').value=u?.email||'';$('usr-senha').value='';$('usr-perfil').value=u?.perfil||'operador';await fillMotoristasSelect(u?.motorista_id||'');onPerfilChange();if(u)$('usr-login').setAttribute('readonly','');else $('usr-login').removeAttribute('readonly');openModal('modal-usuario')}
+async function saveUsuario(){const n=$('usr-nome').value.trim(),l=$('usr-login').value.trim(),s=$('usr-senha').value,id=$('usr-id').value,perfil=$('usr-perfil').value,mot=$('usr-motorista').value;if(!n){toast('Nome','err');return}if(!id&&(!l||!s)){toast('Login e senha','err');return}if(perfil==='operador_maquina'&&!mot){toast('Selecione o motorista vinculado','err');return}const b={nome:n,login:l,email:$('usr-email').value.trim(),perfil,motorista_id:mot};if(s)b.senha=s;try{if(id)await PUT('/api/usuarios/'+id,b);else await POST('/api/usuarios',b);closeModal('modal-usuario');loadUsuarios();toast('Salvo!')}catch(e){toast(e.message,'err')}}
+async function loadUsuarios(){const rows=await GET('/api/usuarios');const perfilLabel=p=>p==='admin'?'👑 Admin':p==='operador_maquina'?'🚜 Op. Máquina':'👤 Operador';$('usuarios-table').innerHTML=`<table><thead><tr><th>Nome</th><th>Login</th><th>E-mail</th><th>Perfil</th><th>Vinculado a</th><th>Status</th><th></th></tr></thead><tbody>${rows.map(u=>`<tr><td><strong>${u.nome}</strong></td><td style="font-family:var(--mono)">${u.login}</td><td style="font-size:12px">${u.email||'—'}</td><td><span class="badge badge-${u.perfil}">${perfilLabel(u.perfil)}</span></td><td style="font-size:12px">${u.motorista_nome||'—'}</td><td>${u.ativo?'✅':'❌'}</td><td><div style="display:flex;gap:3px"><button class="btn btn-ghost btn-sm btn-icon" onclick='openUsuarioModal(${JSON.stringify(u).replace(/'/g,"&#39;")})'>✏️</button>${u.id!==USER?.id?`<button class="btn btn-danger btn-sm btn-icon" onclick="deleteUsuario('${u.id}')">🗑</button>`:''}</div></td></tr>`).join('')}</tbody></table>`}
 async function deleteUsuario(id){if(!confirm('Desativar?'))return;await DEL('/api/usuarios/'+id);loadUsuarios();toast('OK')}
+
+// ══ MAQUINÁRIO ════════════════════════════════════════════
+let MAQ_CACHE=[],OP_SELECTED='',OP_ATIVO=null,OP_TIMER=null,OP_GEO=null;
+
+async function loadMaquinario(){if(USER?.perfil==='operador_maquina'){renderOperadorView();return}await loadMaquinasAdmin();maqTab('maquinas')}
+function maqTab(t){document.querySelectorAll('.maq-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));document.querySelectorAll('.maq-tab-pane').forEach(p=>p.classList.toggle('active',p.id==='maq-pane-'+t));if(t==='historico')loadHistorico();if(t==='auditoria')loadAuditoria()}
+
+async function loadMaquinasAdmin(){const ms=await GET('/api/maquinas');MAQ_CACHE=ms;const disp=ms.filter(m=>m.status_atual==='disponivel').length,uso=ms.length-disp;$('maq-summary').innerHTML=`<span><b>${ms.length}</b>máquinas</span><span style="color:var(--green)"><b>${disp}</b>disponíveis</span><span style="color:var(--orange)"><b>${uso}</b>em uso</span>`;$('maq-list').innerHTML=ms.length?ms.map(m=>{const ativo=m.percurso_ativo;return`<div class="maq-card ${m.status_atual==='em_uso'?'em-uso':''}"><div class="maq-card-head"><div><div class="maq-card-nome">${m.nome}</div><div class="maq-card-cod">${m.codigo}</div></div><span class="maq-card-status ${m.status_atual==='disponivel'?'disp':'uso'}"><span class="dot"></span>${m.status_atual==='disponivel'?'Livre':'Em uso'}</span></div>${m.tipo?`<div class="maq-card-tipo">${m.tipo}${m.ano?' • '+m.ano:''}</div>`:''}<div class="maq-card-desc">${m.descricao||'Sem descrição'}</div>${ativo?`<div class="maq-card-info">▶ ${ativo.operador_nome} desde ${new Date(ativo.inicio).toLocaleString('pt-BR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}</div>`:''}<div class="maq-card-foot"><button class="btn btn-ghost btn-sm" onclick='openMaquinaModal(${JSON.stringify(m).replace(/'/g,"&#39;")})'>✏️ Editar</button><button class="btn btn-danger btn-sm" onclick="deleteMaquina('${m.id}')" ${m.status_atual==='em_uso'?'disabled':''}>🗑</button></div></div>`}).join(''):'<div class="op-empty">Nenhuma máquina cadastrada. Clique em <b>+ Nova Máquina</b> para começar.</div>'}
+
+function openMaquinaModal(m){$('modal-maq-title').textContent=m?'EDITAR MÁQUINA':'NOVA MÁQUINA';$('maq-id').value=m?.id||'';$('maq-nome').value=m?.nome||'';$('maq-codigo').value=m?.codigo||'';$('maq-tipo').value=m?.tipo||'';$('maq-ano').value=m?.ano||'';$('maq-desc').value=m?.descricao||'';openModal('modal-maquina')}
+async function saveMaquina(){const id=$('maq-id').value,nome=$('maq-nome').value.trim(),codigo=$('maq-codigo').value.trim().toUpperCase();if(!nome||!codigo){toast('Nome e código','err');return}const b={nome,codigo,tipo:$('maq-tipo').value.trim(),descricao:$('maq-desc').value.trim(),ano:$('maq-ano').value||null};try{if(id)await PUT('/api/maquinas/'+id,b);else await POST('/api/maquinas',b);closeModal('modal-maquina');loadMaquinasAdmin();toast('Salvo!')}catch(e){toast(e.message,'err')}}
+async function deleteMaquina(id){if(!confirm('Desativar esta máquina?'))return;try{await DEL('/api/maquinas/'+id);loadMaquinasAdmin();toast('OK')}catch(e){toast(e.message,'err')}}
+
+let HIST_SELECTS_LOADED=false;
+async function loadHistorico(){if(!HIST_SELECTS_LOADED){const[ms,us]=await Promise.all([GET('/api/maquinas'),GET('/api/usuarios').catch(()=>[])]);$('hist-f-maquina').innerHTML='<option value="">Todas</option>'+ms.map(m=>`<option value="${m.id}">${m.nome} (${m.codigo})</option>`).join('');$('hist-f-operador').innerHTML='<option value="">Todos</option>'+us.filter(u=>u.perfil==='operador_maquina').map(u=>`<option value="${u.id}">${u.nome}</option>`).join('');HIST_SELECTS_LOADED=true}const params={};if($('hist-f-maquina').value)params.maquina_id=$('hist-f-maquina').value;if($('hist-f-operador').value)params.operador_id=$('hist-f-operador').value;if($('hist-f-status').value)params.status=$('hist-f-status').value;if($('hist-f-inicio').value)params.inicio=$('hist-f-inicio').value;if($('hist-f-fim').value)params.fim=$('hist-f-fim').value;const qs=new URLSearchParams(params).toString();const rows=await GET('/api/percursos'+(qs?'?'+qs:''));$('historico-table').innerHTML=`<table><thead><tr><th>Máquina</th><th>Operador</th><th>Início</th><th>Fim</th><th>Duração</th><th>Status</th><th>Localização</th><th></th></tr></thead><tbody>${rows.length?rows.map(r=>{const geoIni=(r.lat_inicio&&r.lng_inicio)?`<a href="https://maps.google.com/?q=${r.lat_inicio},${r.lng_inicio}" target="_blank" style="color:var(--accent)" title="${r.endereco_inicio||''}">📍 ${(+r.lat_inicio).toFixed(4)},${(+r.lng_inicio).toFixed(4)}</a>`:'—';return`<tr><td><strong>${r.maquina_nome}</strong><div style="font-family:var(--mono);font-size:10px;color:var(--text3)">${r.maquina_codigo}</div></td><td>${r.operador_nome}${r.motorista_nome&&r.motorista_nome!==r.operador_nome?`<div style="font-size:10px;color:var(--text3)">${r.motorista_nome}</div>`:''}</td><td style="font-family:var(--mono);font-size:11px">${new Date(r.inicio).toLocaleString('pt-BR')}</td><td style="font-family:var(--mono);font-size:11px">${r.fim?new Date(r.fim).toLocaleString('pt-BR'):'—'}</td><td style="font-family:var(--mono);font-weight:700">${r.duracao_fmt}</td><td><span class="percurso-status ${r.status}">${r.status==='em_andamento'?'▶ Em curso':'✓ Concluído'}</span></td><td style="font-size:11px">${geoIni}</td><td><button class="btn btn-danger btn-sm btn-icon" onclick="deletePercurso('${r.id}')" title="Excluir registro">🗑</button></td></tr>`}).join(''):'<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text3)">Nenhum percurso encontrado</td></tr>'}</tbody></table>`}
+async function deletePercurso(id){if(!confirm('Excluir este registro de percurso? Não pode ser desfeito.'))return;try{await DEL('/api/percursos/'+id);loadHistorico();toast('OK')}catch(e){toast(e.message,'err')}}
+async function exportPercursosCSV(){try{const r=await fetch('/api/percursos/export.csv',{headers:{'Authorization':'Bearer '+TOKEN}});if(!r.ok)throw new Error('Erro ao exportar');const blob=await r.blob();const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='percursos.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}catch(e){toast(e.message,'err')}}
+
+async function loadAuditoria(){const rows=await GET('/api/auditoria').catch(()=>[]);$('auditoria-table').innerHTML=`<table><thead><tr><th>Data</th><th>Usuário</th><th>Ação</th><th>Entidade</th><th>Detalhes</th><th>IP</th></tr></thead><tbody>${rows.length?rows.map(r=>{let det=r.detalhes||'';try{const o=JSON.parse(r.detalhes);det=Object.entries(o).filter(([k,v])=>v!==''&&v!=null).map(([k,v])=>`${k}: ${typeof v==='object'?JSON.stringify(v):v}`).join(' • ')}catch(e){}return`<tr><td style="font-family:var(--mono);font-size:11px">${r.criado_em}</td><td><strong>${r.usuario_login||'—'}</strong></td><td><span class="badge badge-operador">${r.acao}</span></td><td style="font-family:var(--mono);font-size:11px">${r.entidade}${r.entidade_id?' #'+r.entidade_id.slice(0,8):''}</td><td style="font-size:11px;color:var(--text3)">${det||'—'}</td><td style="font-family:var(--mono);font-size:10px;color:var(--text3)">${r.ip||'—'}</td></tr>`}).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--text3)">Sem registros</td></tr>'}</tbody></table>`}
+
+// ══ VISÃO OPERADOR ══════════════════════════════════════
+async function renderOperadorView(){$('login-screen').classList.add('hidden');document.body.classList.add('is-operador-maquina');await refreshOperadorState()}
+
+async function refreshOperadorState(){try{OP_ATIVO=await GET('/api/percursos/ativo');MAQ_CACHE=await GET('/api/maquinas');paintOperador()}catch(e){toast('Erro ao carregar: '+e.message,'err')}}
+
+function paintOperador(){const el=$('maq-operador-view');const nomeOp=USER.motorista?.nome||USER.nome;const greeting=`<div class="op-header"><div class="op-logo"><div class="op-logo-img"><img src="/logo.png" alt="iL"></div><div class="op-logo-txt">iLnet</div></div><button class="op-logout" onclick="doLogout()">🚪 Sair</button></div><div class="op-greeting"><div class="op-greeting-hi">OPERADOR</div><div class="op-greeting-name">${nomeOp}</div><div class="op-greeting-sub">${USER.motorista?.cnh?'CNH '+USER.motorista.cnh:''}</div></div>`;
+  if(OP_ATIVO){const ini=new Date(OP_ATIVO.inicio);el.innerHTML=greeting+`<div class="op-ativo"><div class="op-ativo-label">▶ Em operação</div><div class="op-ativo-maquina">${OP_ATIVO.maquina_nome}</div><div class="op-ativo-cod">${OP_ATIVO.maquina_codigo}</div><div class="op-cron" id="op-cron">00:00:00</div><div class="op-info-grid"><div class="op-info-item"><div class="op-info-label">Início</div><div class="op-info-val">${ini.toLocaleString('pt-BR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'})}</div></div><div class="op-info-item"><div class="op-info-label">Localização</div><div class="op-info-val" style="font-size:11px">${(OP_ATIVO.lat_inicio&&OP_ATIVO.lng_inicio)?`<a href="https://maps.google.com/?q=${OP_ATIVO.lat_inicio},${OP_ATIVO.lng_inicio}" target="_blank" style="color:var(--accent)">📍 ver mapa</a>`:'—'}</div></div></div></div><button class="op-btn-big op-btn-encerrar" onclick="encerrarPercurso()"><svg viewBox="0 0 24 24"><use href="#i-stop"></use></svg>ENCERRAR PERCURSO</button>`;startCronometro(ini)}
+  else{stopCronometro();const livres=MAQ_CACHE.filter(m=>m.status_atual==='disponivel');el.innerHTML=greeting+`<div class="op-section"><div class="op-section-title">1. Selecione a máquina</div><div class="op-maq-list" id="op-maq-list">${MAQ_CACHE.length?MAQ_CACHE.map(m=>`<div class="op-maq-card ${m.status_atual==='em_uso'?'indisp':''} ${OP_SELECTED===m.id?'selected':''}" data-id="${m.id}" onclick="${m.status_atual==='disponivel'?`selectMaquina('${m.id}')`:''}"><div class="op-maq-icon"><svg viewBox="0 0 24 24"><use href="#i-machine"></use></svg></div><div class="op-maq-info"><div class="op-maq-nome">${m.nome}</div><div class="op-maq-cod">${m.codigo}${m.tipo?' • '+m.tipo:''}</div></div><span class="op-maq-badge ${m.status_atual==='disponivel'?'disp':'uso'}">${m.status_atual==='disponivel'?'Livre':'Em uso'}</span></div>`).join(''):'<div class="op-empty">Nenhuma máquina cadastrada. Peça ao administrador para cadastrar.</div>'}</div></div><div class="op-section"><div class="op-section-title">2. Confirme e inicie</div><div class="op-geo-status" id="op-geo-status">📍 Localização: aguardando…</div><button class="op-btn-big op-btn-iniciar" id="op-btn-iniciar" onclick="iniciarPercurso()" disabled><svg viewBox="0 0 24 24"><use href="#i-play"></use></svg>INICIAR PERCURSO</button></div>`;captureGeolocation()}
+}
+
+function selectMaquina(id){OP_SELECTED=id;document.querySelectorAll('.op-maq-card').forEach(c=>c.classList.toggle('selected',c.dataset.id===id));updateIniciarBtn()}
+function updateIniciarBtn(){const b=$('op-btn-iniciar');if(b)b.disabled=!OP_SELECTED}
+
+function captureGeolocation(){const s=$('op-geo-status');if(!s)return;if(!navigator.geolocation){s.textContent='⚠ Geolocalização não disponível';s.className='op-geo-status err';return}s.textContent='📍 Capturando localização…';navigator.geolocation.getCurrentPosition(p=>{OP_GEO={lat:p.coords.latitude,lng:p.coords.longitude};s.innerHTML=`✓ Localização capturada (${p.coords.accuracy.toFixed(0)}m)`;s.className='op-geo-status ok'},err=>{OP_GEO=null;s.textContent='⚠ Sem localização (continue mesmo assim)';s.className='op-geo-status err'},{enableHighAccuracy:true,timeout:15000,maximumAge:30000})}
+
+async function iniciarPercurso(){if(!OP_SELECTED){toast('Selecione uma máquina','err');return}if(!confirm('Confirmar início do percurso?'))return;try{await POST('/api/percursos/iniciar',{maquina_id:OP_SELECTED,lat:OP_GEO?.lat,lng:OP_GEO?.lng,endereco:''});OP_SELECTED='';await refreshOperadorState();toast('Percurso iniciado!')}catch(e){toast(e.message,'err')}}
+
+async function encerrarPercurso(){if(!confirm('Tem certeza que deseja encerrar o percurso?'))return;try{await new Promise(r=>{if(!navigator.geolocation){r();return}navigator.geolocation.getCurrentPosition(p=>{OP_GEO={lat:p.coords.latitude,lng:p.coords.longitude};r()},_=>r(),{timeout:8000})});await POST('/api/percursos/encerrar',{lat:OP_GEO?.lat,lng:OP_GEO?.lng,endereco:''});await refreshOperadorState();toast('Percurso encerrado!')}catch(e){toast(e.message,'err')}}
+
+function startCronometro(ini){stopCronometro();const tick=()=>{const el=$('op-cron');if(!el)return stopCronometro();const s=Math.floor((Date.now()-ini.getTime())/1000);const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),x=s%60;el.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(x).padStart(2,'0')};tick();OP_TIMER=setInterval(tick,1000)}
+function stopCronometro(){if(OP_TIMER){clearInterval(OP_TIMER);OP_TIMER=null}}
 
 // SENHA
 function openSenhaModal(){$('pwd-atual').value='';$('pwd-nova').value='';$('pwd-conf').value='';closeAllPanels();openModal('modal-senha')}
