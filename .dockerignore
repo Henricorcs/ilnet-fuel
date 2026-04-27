@@ -1,0 +1,11 @@
+node_modules/
+database/*.db
+database/*.db-shm
+database/*.db-wal
+database/*.db-bak
+public/uploads/
+*.log
+.env
+.git/
+.claude/
+import-excel.js
